@@ -1,11 +1,11 @@
 [![License: AGPL v3](https://img.shields.io/badge/License-AGPL_v3-blue.svg)](https://www.gnu.org/licenses/agpl-3.0)
-[![Claude Code Skill](https://img.shields.io/badge/Claude_Code-Skill-orange)](https://docs.anthropic.com/en/docs/claude-code)
+[![Agent Skill](https://img.shields.io/badge/Agent_Skill-Open_Standard-orange)](https://agentskills.io)
 
 # Privacy Notice EU v1.0
 
-**Pan-EU GDPR Privacy Notice Generator** — a comprehensive drafting skill for [Claude Code](https://docs.anthropic.com/en/docs/claude-code) that produces jurisdiction-aware, GDPR-compliant privacy notices as professional .docx documents.
+**Pan-EU GDPR Privacy Notice Generator** — an [Agent Skill](https://agentskills.io) that produces jurisdiction-aware, GDPR-compliant privacy notices as professional .docx documents.
 
-> **Note:** This is a Claude Code skill, not a standalone application. It requires Claude Code (Anthropic's agentic coding tool) to run. The skill extends Claude's capabilities with specialized GDPR privacy notice drafting knowledge, multi-jurisdiction requirements, and document generation.
+> **Note:** This is an [Agent Skill](https://agentskills.io) — not a standalone application. It runs inside any compatible AI agent, including Claude Code, Claude.ai, Cursor, VS Code, GitHub Copilot, Gemini CLI, OpenAI Codex, JetBrains Junie, and [many more](https://agentskills.io). The skill extends your agent's capabilities with specialized GDPR privacy notice drafting knowledge, multi-jurisdiction requirements, and document generation.
 
 ## Features
 
@@ -22,17 +22,22 @@
 
 ## Installation
 
-1. Clone this repository:
-   ```bash
-   git clone https://github.com/oliverschmidtprietz/GDPR-Privacy-Notice-EU.git
-   ```
+This is an [Agent Skill](https://agentskills.io) compatible with any tool that supports the open Agent Skills standard.
 
-2. Copy the skill folder into your Claude Code skills directory:
-   ```bash
-   cp -r GDPR-Privacy-Notice-EU/ ~/.claude/skills/user/gdpr-privacy-notice-eu-oliver-schmidt-prietz/
-   ```
+### Claude Code
 
-3. The skill will auto-activate when you mention privacy notices, Datenschutzerklaerung, politique de confidentialite, Art. 13/14, or related topics in Claude Code.
+```bash
+git clone https://github.com/oliverschmidtprietz/GDPR-Privacy-Notice-EU.git
+cp -r GDPR-Privacy-Notice-EU/ ~/.claude/skills/user/gdpr-privacy-notice-eu-oliver-schmidt-prietz/
+```
+
+The skill will auto-activate when you mention privacy notices, Datenschutzerklaerung, politique de confidentialite, Art. 13/14, or related topics.
+
+### Other Compatible Agents
+
+For Cursor, VS Code, Gemini CLI, OpenAI Codex, JetBrains Junie, and other tools supporting the Agent Skills standard, follow the skill installation instructions for your specific tool. The skill folder structure is portable — just point your agent to the cloned directory.
+
+See [agentskills.io](https://agentskills.io) for a full list of compatible tools and integration guides.
 
 ## File Structure
 
