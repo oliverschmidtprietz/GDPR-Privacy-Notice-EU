@@ -1,5 +1,7 @@
 # Privacy Notice EU — Deployment Guide
 
+> 📄 **[View the interactive skill page →](https://oliverschmidtprietz.github.io/GDPR-Privacy-Notice-EU/)**
+
 ## Overview
 
 Pan-EU GDPR Privacy Notice Generator — a comprehensive drafting skill for Claude that produces jurisdiction-aware, GDPR-compliant privacy notices as professional .docx documents:
