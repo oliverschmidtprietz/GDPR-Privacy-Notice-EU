@@ -1,11 +1,11 @@
 ---
-name: gdpr-privacy-notice-eu-oliver-schmidt-prietz
+name: privacy-notice-eu
 description: |
   Draft GDPR/DSGVO-compliant privacy notices as .docx for any EU/EEA jurisdiction and audience. Use when user asks to create a privacy policy/notice, mentions "Datenschutzerklärung", "politique de confidentialité", "privacy notice", needs Art. 13/14 disclosures, AI Act transparency, cookie policy, or notices for applicants ("Bewerber-Datenschutz"), employees ("Beschäftigten-Datenschutz"), B2B partners, or B2C customers. Covers DE (DSGVO+BDSG+TDDDG), FR (RGPD+LIL+LCEN), AT, IT, ES, NL, BE, IE, UK GDPR. Five notice types: Website/App, Applicant, Employee, Business Partner, B2C Customer.
 metadata:
   author: Oliver Schmidt-Prietz
   license: AGPL-3.0
-  version: 2026.02.09
+  version: 1.1
 ---
 
 # Pan-EU GDPR Privacy Notice Generator
