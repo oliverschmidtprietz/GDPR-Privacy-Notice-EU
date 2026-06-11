@@ -6,6 +6,19 @@ Format: `## [vX.Y] — YYYY-MM-DD`
 
 ---
 
+## [v1.2] — 2026-06-11
+
+Output-discipline + audience-clarity guidance from the LegalQuants QA review (PR #7), which flagged this skill's finished, formatted .docx as the output a lawyer is most tempted to ratify rather than review. No change to the notice templates, intake flow, or jurisdiction references.
+
+- **Confidence model that travels with the document (pre-merge fix).** Legal positions are tagged Settled / Assumed / Contested; contested points are NOT smoothed into authoritative prose — they render as highlighted **[TO CONFIRM WITH COUNSEL]** flags in the .docx and as explicit Assumptions / Open-items lists in the delivery summary.
+- **Out-of-playbook STOP + stale-data caveat (pre-merge fix).** Jurisdictions beyond the nine loaded reference files now trigger a clean STOP + route to local counsel instead of silently defaulting to "GDPR defaults"; bundled article / adequacy-DPF / age-threshold data is flagged as point-in-time and to be re-verified against the live source.
+- **"Who this is for" + work shape.** Names the operator (privacy practitioner / DPO / supporting lawyer; a non-lawyer must route output to counsel before publication) and the bounded, document-centric work shape.
+- **Privilege note.** The gap findings surfaced alongside the notice are candid drafting observations, not legal advice and not in themselves a privileged work product.
+
+**Status:** reviewed (carried from v1.1) — additive guidance and output discipline, no change to drafting logic.
+
+---
+
 ## [v1.1] — 2026-05-31
 
 Regulatory-horizon additions to `references/EU_COMMON.md` (no change to notice-drafting logic).

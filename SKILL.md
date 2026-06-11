@@ -5,12 +5,20 @@ description: |
 metadata:
   author: Oliver Schmidt-Prietz
   license: AGPL-3.0
-  version: 1.1
+  version: 1.2
 ---
 
 # Pan-EU GDPR Privacy Notice Generator
 
 Generate jurisdiction-aware, GDPR-compliant privacy notices as professional .docx documents.
+
+## Who this is for, and what kind of work this is
+
+**Operator.** This skill is written for a **privacy practitioner — an in-house data protection lead or DPO, or the privacy/commercial lawyer supporting them.** It can be run by a non-lawyer (a founder or ops owner drafting a first notice), but then the output must be routed to qualified counsel before publication, not published on the skill's say-so. No special AI fluency is assumed beyond answering the intake questions in plain language.
+
+**Work shape.** The work is **bounded and document-centric**: a single privacy notice assembled from a fixed template, the loaded jurisdiction reference, and the controller's intake — pattern-matched against the Art. 13/14 disclosure checklist, not open-ended advisory. The skill stays conservative inside that pattern and hands anything outside it back to counsel (see **Confidence and what gets handed back** below).
+
+**Status of the output.** The notice itself is a client-facing document; the gap findings and assumptions this skill surfaces alongside it (e.g. "no DPA on file for processor X") are **candid drafting observations — not legal advice, and not in themselves a privileged work product.** Treat their storage and sharing per your firm's work-product and privilege policy.
 
 ## Workflow Overview
 
@@ -21,6 +29,16 @@ Generate jurisdiction-aware, GDPR-compliant privacy notices as professional .doc
 4. VERIFY   → Art. 13/14 compliance check + type-specific checks + AI Act check
 5. DELIVER  → .docx output via docx skill
 ```
+
+## Confidence and what gets handed back
+
+A finished, formatted .docx reads as authoritative — which is the risk: a reviewing lawyer is tempted to ratify it rather than re-examine it. So the skill must make its own certainty visible and must NOT smooth contested points into confident prose. Tag every non-trivial legal position the notice relies on:
+
+- **Settled** — directly supported by a cited GDPR article, the loaded jurisdiction reference, or an in-force national provision → render it normally.
+- **Assumed** — rests on an intake answer the skill cannot verify (e.g. "marketing runs on consent") or on a default the user did not explicitly confirm → render it, but list it in the delivery summary's *Assumptions* block so the reviewer can check it.
+- **Contested / uncertain** — the position is genuinely unsettled, falls outside the loaded references, or turns on facts the skill does not have → do NOT pick an authoritative-sounding answer. Leave a visible, highlighted drafting flag in the .docx (**[TO CONFIRM WITH COUNSEL: …]**) and call it out in the summary. Hand it back; do not bury it in fluent prose.
+
+Confidence travels **with the document**: the delivery summary (Step 5) carries the Assumptions and Contested/Open-items lists explicitly, not just the chat.
 
 ## Step 1: Scope, Notice Type & Template Selection
 
@@ -60,6 +78,10 @@ Ask which countries/markets the service targets. Load the appropriate reference:
 | Always load | `references/EU_COMMON.md` |
 
 For multi-jurisdiction services, load all relevant files and note where requirements differ (e.g., children's age thresholds, DPO thresholds, retention rules).
+
+**Covered jurisdictions = the loaded reference files only.** The skill has playbooks for DE, FR, AT, IT, ES, NL, BE, IE, and UK. If the target market is **any other country** (e.g. PL, SE, DK, or a non-EEA jurisdiction), do NOT silently draft to generic "GDPR defaults" — that hides the national specifics (supervisory authority, employment-data rules, marketing law, age thresholds) the notice actually needs. Instead **STOP and tell the user** the jurisdiction is outside the loaded playbooks: draft only the EU-baseline sections you can support, mark the national-law layer as an open item, and route it to local counsel. Name the gap; do not paper over it.
+
+**Bundled legal data is point-in-time — re-verify, don't trust.** The article references, adequacy / EU–US Data Privacy Framework participant lists, retention defaults, and children's-consent age thresholds in the reference files were current when written and drift over time. Treat them as a starting point to confirm against the live source, not as standing authority. Flag any reliance on a possibly-stale value in the delivery summary and tag it *Assumed* per **Confidence and what gets handed back**.
 
 ### Template Selection
 
@@ -271,6 +293,7 @@ Last updated: [DATE]
 - **AI disclosure**: If AI is used, include a dedicated section even if Art. 22 doesn't strictly apply — the AI Act requires transparency.
 - **Tables**: Use tables for purposes/bases/retention and for cookie categories. They improve readability.
 - **No internal references**: The final document must not contain references to this skill, CNIL guides, or other drafting aids.
+- **Confidence marking**: Tag each legal position per **Confidence and what gets handed back**. Never render a contested or unverified position as settled prose — leave a highlighted **[TO CONFIRM WITH COUNSEL: …]** flag instead, and record it in the delivery summary.
 
 ## Step 4: Compliance Verification
 
@@ -336,8 +359,9 @@ Read the docx skill instructions before generating the file. Use `docx-js` for n
 
 Present the .docx file with:
 1. Brief confirmation of what was included
-2. Any open questions or assumptions made
-3. Recommendation for legal review before publication
+2. **Assumptions** — positions rendered in the notice that rest on unverified intake answers or unconfirmed defaults, so the reviewer can check them
+3. **Contested / open items** — positions left as highlighted **[TO CONFIRM WITH COUNSEL]** flags because they are genuinely unsettled or fall outside the loaded jurisdiction references; these are handed back, not resolved
+4. Recommendation for legal review before publication
 
 > **IMPORTANT**: Always recommend that the user has the notice reviewed by qualified legal counsel before publication. This tool assists in drafting — it does not replace legal advice.
 
