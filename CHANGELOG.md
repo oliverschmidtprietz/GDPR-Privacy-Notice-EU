@@ -6,6 +6,16 @@ Format: `## [vX.Y] — YYYY-MM-DD`
 
 ---
 
+## [v1.3] — 2026-07-07
+
+Group G DPIA-indicator correction (legal accuracy) + sibling wiring.
+
+- Added the missing 9th WP248 rev.01 criterion ("processing that prevents data subjects from exercising a right or using a service or contract") — Group G previously listed only 8 of 9.
+- "Appears to be required" reframed as a **rebuttable presumption** at 2+ criteria, matching dpia-sentinel's (correct) framing — the two skills previously diverged on the legal test.
+- Group G now explicitly defers threshold ownership to the `dpia-sentinel` skill and routes users there for the full assessment and jurisdiction overlays (previously described a DPIA "as a separate exercise" without naming the sibling skill).
+
+---
+
 ## [v1.2] — 2026-06-11
 
 Output-discipline + audience-clarity guidance from the LegalQuants QA review (PR #7), which flagged this skill's finished, formatted .docx as the output a lawyer is most tempted to ratify rather than review. No change to the notice templates, intake flow, or jurisdiction references.

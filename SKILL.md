@@ -5,7 +5,7 @@ description: |
 metadata:
   author: Oliver Schmidt-Prietz
   license: AGPL-3.0
-  version: 1.2
+  version: 1.3
 ---
 
 # Pan-EU GDPR Privacy Notice Generator
@@ -212,7 +212,7 @@ If the service uses AI/ML:
 
 ### Group G — DPIA Indicators (Art. 35 GDPR)
 
-Check whether a Data Protection Impact Assessment may be required. If **2 or more** of the following indicators apply, inform the user and recommend a DPIA as a separate deliverable:
+Check whether a Data Protection Impact Assessment may be required, using the nine WP248 rev.01 criteria (the `dpia-sentinel` skill owns the authoritative threshold test — this group only flags):
 
 1. **Systematic evaluation/scoring** of individuals (profiling, credit scoring, performance reviews)
 2. **Automated decision-making** with legal or similarly significant effects (Art. 22)
@@ -222,12 +222,13 @@ Check whether a Data Protection Impact Assessment may be required. If **2 or mor
 6. **Matching or combining datasets** from different sources in ways data subjects would not reasonably expect
 7. **Vulnerable data subjects** (employees, children, patients, elderly)
 8. **Innovative use of technology** (biometrics, AI/ML, IoT, blockchain for personal data)
+9. **Processing that prevents data subjects from exercising a right or using a service or contract** (e.g. credit screening that gates a loan)
 
 **If 2+ indicators are flagged**:
-- Inform the user: "Based on the processing activities described, a Data Protection Impact Assessment (DPIA) under Art. 35 GDPR appears to be required."
+- Inform the user: "Based on the processing activities described, a Data Protection Impact Assessment (DPIA) under Art. 35 GDPR is presumptively required (2+ WP248 criteria — a rebuttable presumption, not an automatic legal conclusion)."
 - Explain the notice implications: the privacy notice should reference that a DPIA has been conducted (without disclosing the DPIA content itself)
-- Recommend: "A DPIA is a separate compliance exercise and should be conducted before the processing begins. This privacy notice skill can draft the notice, but the DPIA should be prepared as a standalone document."
-- Check national mandatory DPIA lists (DE: DSK-Liste; FR: CNIL list of processing operations requiring DPIA)
+- Recommend: "A DPIA is a separate compliance exercise and should be conducted before the processing begins. Run the `dpia-sentinel` skill for the full threshold assessment and DPIA drafting — this privacy notice skill only drafts the notice."
+- Check national mandatory DPIA lists (DE: DSK-Liste; FR: CNIL list of processing operations requiring DPIA) — dpia-sentinel carries the jurisdiction overlays
 
 ### Summary Before Drafting
 
