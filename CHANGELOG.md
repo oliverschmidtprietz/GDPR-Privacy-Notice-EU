@@ -6,6 +6,18 @@ Format: `## [vX.Y] — YYYY-MM-DD`
 
 ---
 
+## [v1.4] — 2026-07-21
+
+Digital Omnibus instrument-citation correction. Legal-accuracy patch; no change to notice structure, templates or jurisdiction overlays.
+
+- **`references/EU_COMMON.md` — wrong instrument corrected.** The Digital Omnibus proposal was cited as *COM(2025) 833 final*. The Digital Omnibus package of 19 November 2025 is **COM(2025) 836** (Digital Omnibus on AI, 2025/0359(COD)), **COM(2025) 837** (Digital Omnibus Regulation — data, privacy and cybersecurity, 2025/0360(COD), carrying the GDPR amendments in **Article 3**) and **COM(2025) 838** (European Business Wallets). **No Commission proposal bears the number COM(2025) 833** — EUR-Lex has no `52025PC0833`. The transparency regulatory-horizon note now cites COM(2025) 837 final, procedure 2025/0360(COD), GDPR amendments at Article 3, with an instrument note and primary-source URL.
+- **Substance unaffected.** The proposed narrowing of the Art. 13/14 transparency burden was described correctly; only the document identifier was wrong.
+- Verified 2026-07-21 against EUR-Lex (CELEX 52025PC0837) and the European Parliament Legislative Train entry for the digital package; corroborated by `data-subject-rights/sources/verification-log.md` §4.1.
+
+**Status:** reviewed (carried from v1.3).
+
+---
+
 ## [v1.3] — 2026-07-07
 
 Group G DPIA-indicator correction (legal accuracy) + sibling wiring.
