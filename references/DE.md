@@ -128,7 +128,7 @@ The DSK (Datenschutzkonferenz) has repeatedly raised concerns. If used:
 
 ## Children's Data
 
-- GDPR Art. 8 threshold: Germany sets **16 years** (§ 2 Nr. 17 TDDDG, national implementation)
+- GDPR Art. 8 threshold: **16 years** — the GDPR Art. 8(1) default. Germany has enacted no national derogation lowering it (no provision in BDSG or TDDDG does so).
 - If service targets minors: parental consent mechanism required
 - Privacy notice must use age-appropriate language
 
@@ -136,8 +136,8 @@ The DSK (Datenschutzkonferenz) has repeatedly raised concerns. If used:
 
 ### Mandatory DPO (§ 38 BDSG)
 - **≥ 20 persons** constantly engaged in automated processing
-- Core activity: large-scale processing of special categories (Art. 9/10 DSGVO)
-- Core activity: systematic monitoring (Art. 37(1)(c) DSGVO)
+- Core activity: large-scale processing of special categories (Art. 9/10 DSGVO) (Art. 37(1)(c) DSGVO)
+- Core activity: systematic monitoring (Art. 37(1)(b) DSGVO)
 
 Always include DPO contact in the privacy notice if appointed. Use functional email (datenschutz@..., dpo@...).
 

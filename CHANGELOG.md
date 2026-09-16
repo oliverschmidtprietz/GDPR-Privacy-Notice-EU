@@ -6,6 +6,24 @@ Format: `## [vX.Y] — YYYY-MM-DD`
 
 ---
 
+## [v1.6] — 2026-09-15
+
+Adversarial-review correction pass (source: `docs/projects/gdpr-skills-marathon/ADVERSARIAL-REVIEW-2026-09-08.md`, findings 7 and 14). Legal-accuracy fixes only; no change to notice structure, templates or jurisdiction overlays.
+
+- **Finding 7 — `references/EU_COMMON.md` multi-jurisdiction children's-age rule was wrong.** The rule instructed applying the **lowest** applicable Art. 8 age threshold across all target markets. This is incorrect: a German 14-year-old remains protected by Germany's 16-year threshold even if the service also operates in a 13-country — a Member State's threshold protects the children that Member State's law protects, determined by where the child is / which market the service is directed at, not by the controller's establishment. Replaced with the correct rule: apply each Member State's own threshold to its own market; where the service cannot reliably localise its users, apply the **highest** applicable threshold (16) as the fallback, since it is the only choice that cannot be wrong in any target market. Also corrected the same error where it recurred in the Art. 8 age-threshold table's Germany source citation.
+- **Finding 14a — `references/DE.md` cited a nonexistent provision for Germany's consent age.** "§ 2 Nr. 17 TDDDG" was cited as a national implementation lowering the age to 16; § 2 TDDDG contains only definitions (Nr. 1–6) and no such provision exists. Germany has enacted no national derogation from the Art. 8(1) default — corrected to state 16 years applies as the GDPR default, with no lowering provision in BDSG or TDDDG. Audited the remaining TDDDG pinpoints in the skill (§ 25 cookie/tracking consent, § 176 TKG telecom traffic-data retention) — both check out against the statute and were left unchanged.
+- **Finding 14b — `references/OTHER_EU.md` Spain citations were swapped/wrong.** "Art. 12 LOPDGDD: right to digital disconnection" and "Art. 89: right of rectification on the internet" were incorrect — Art. 12 is general provisions on exercising rights, Art. 89 is workplace video/audio surveillance. Corrected to Art. 88 LOPDGDD (derecho a la desconexión digital) and Art. 85 LOPDGDD (derecho de rectificación en internet), and clarified Arts. 79–97 LOPDGDD as the "derechos digitales" title. Audited the other Spanish pinpoints in the section (Art. 7 = age 14 for minors' consent) — correct, left unchanged.
+
+## [v1.5] — 2026-08-21
+
+Portfolio-audit correction pass (source: portfolio audit AUDIT-2026-08-19). Legal-accuracy and cross-skill consistency fixes; no change to notice structure, templates or jurisdiction overlays.
+
+- **CF-03 — `references/DE.md` Art. 37(1) DPO-trigger citations were swapped.** The mandatory-DPO section tagged "systematic monitoring" as Art. 37(1)(c) and left the special-categories line uncited. Corrected: special-category/criminal-data processing is Art. 37(1)(c); systematic monitoring is Art. 37(1)(b).
+- **CF-04 — `references/FR.md` cited the same provision for two different retention periods.** The retention table cited Art. 2224 Code civil for both a 5-year period (commercial contracts) and a 6-year period (cookie consent proof), four rows apart. Art. 2224 sets France's general limitation period at 5 years; there is no reading of it that yields 6. Corrected the cookie-consent-proof row to 5 years.
+- **CF-16 — `references/EU_COMMON.md` conflated the two EU AI Act application dates.** Art. 50 transparency obligations were framed as applicable "from August 2025 onwards"; that date covers GPAI/governance obligations only (Art. 113(a)). Art. 50 itself applies from 2 August 2026 (Art. 113(b)) — matching `ai-act-transparency/SKILL.md`. The applicability statement is now split: GPAI/governance from 2 Aug 2025, Art. 50 transparency from 2 Aug 2026 (now in force).
+
+---
+
 ## [v1.4] — 2026-07-21
 
 Digital Omnibus instrument-citation correction. Legal-accuracy patch; no change to notice structure, templates or jurisdiction overlays.

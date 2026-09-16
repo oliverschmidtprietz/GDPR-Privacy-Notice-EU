@@ -48,7 +48,7 @@ For each jurisdiction: key national specifics only. Combine with EU_COMMON.md fo
 | **Children's Age** | 14 years (Art. 7 LOPDGDD) |
 | **Cookie Law** | LSSI (Ley 34/2002) Art. 22; AEPD cookie guide |
 | **Retention (tax)** | 4 years tax (Ley General Tributaria Art. 66), 6 years accounting (Código de Comercio Art. 30) |
-| **Specifics** | Art. 12 LOPDGDD: "Right to digital disconnection" for employees. Art. 89: right of rectification on the internet. Art. 93-94: digital rights including right to be forgotten in search engines, digital education. Whistleblower channel data: specific regime under Ley 2/2023. |
+| **Specifics** | Art. 88 LOPDGDD: "Right to digital disconnection" for employees. Art. 85 LOPDGDD: right of rectification on the internet. Arts. 79-97 LOPDGDD set out the "derechos digitales" (digital rights), including right to be forgotten in search engines and digital education. Whistleblower channel data: specific regime under Ley 2/2023. |
 
 ## Netherlands
 

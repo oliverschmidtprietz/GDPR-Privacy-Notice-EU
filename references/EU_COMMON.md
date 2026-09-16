@@ -156,9 +156,10 @@ If the service uses AI/ML for decisions that produce legal or similarly signific
 - Exceptions: contract, law, explicit consent — but even then, safeguards required (human intervention, express point of view, contest)
 
 ### EU AI Act Interplay (Regulation 2024/1689)
-Applicable from August 2025 onwards (phased):
+Phased application: GPAI/governance obligations apply from **2 August 2025** (Art. 113(a)); Art. 50
+transparency obligations apply from **2 August 2026** (Art. 113(b)) — now in force.
 
-**Transparency obligations for AI systems (Art. 50 AI Act)**:
+**Transparency obligations for AI systems (Art. 50 AI Act, applicable from 2 August 2026)**:
 - AI-generated content must be disclosed (chatbots, deepfakes, synthetic text)
 - Users must be informed they are interacting with an AI system
 - High-risk AI systems: extensive documentation and transparency requirements
@@ -205,7 +206,7 @@ In accordance with the EU AI Act (Regulation 2024/1689), we inform you that [spe
 | Estonia | 13 | § 8 IKS |
 | Finland | 13 | § 5 Tietosuojalaki |
 | France | 15 | Art. 45 LIL |
-| Germany | 16 | § 2 Nr. 17 TDDDG |
+| Germany | 16 | GDPR default (no national derogation) |
 | Greece | 15 | Art. 21 Law 4624/2019 |
 | Hungary | 16 | default |
 | Ireland | 16 | Sec. 31 Data Protection Act 2018 |
@@ -277,7 +278,7 @@ Most EU/EEA jurisdictions allow email marketing to existing customers without pr
 - Corporate SaaS, professional services, age-restricted products (alcohol, gambling) → children's rules generally not applicable
 - Document the rationale for excluding children's data provisions
 
-**Multi-jurisdiction rule**: When the service operates across multiple Member States, apply the **lowest applicable age threshold** across all target markets. See the age threshold table above.
+**Multi-jurisdiction rule**: Apply each Member State's Art. 8 threshold (table above) to the children that Member State's law protects — determined by where the child is / which market the service is directed at, not by the controller's establishment. Where the service cannot reliably localise its users, apply the **highest applicable threshold (16)** as the fallback, because it is the only choice that cannot be wrong in any target market. Never apply the lowest threshold across markets — e.g. a German 14-year-old remains protected by Germany's 16-year threshold even if the service also operates in a 13-country.
 
 **Intake trigger conditions** — Ask about children's data when:
 - The service is publicly accessible (no B2B gating)

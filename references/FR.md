@@ -72,7 +72,7 @@
 | Connection logs (hosting) | 1 year | Art. 6 II LCEN, Décret n°2011-219 |
 | Payroll data | 5 years | Art. L.3243-4 Code du travail |
 | Applicant data (rejected) | 2 years max | CNIL recommendation |
-| Cookie consent proof | 6 years (contractual limitation) | Art. 2224 Code civil |
+| Cookie consent proof | 5 years | Art. 2224 Code civil |
 | CCTV footage | 30 days max | Art. L.252-3 Code de la sécurité intérieure |
 | Medical records | 20 years from last visit | Art. R.1112-7 Code de la santé publique |
 
