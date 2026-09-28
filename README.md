@@ -22,13 +22,20 @@ Pan-EU GDPR Privacy Notice Generator — a comprehensive drafting skill for Clau
 ```
 privacy-notice-eu/
 ├── SKILL.md                              # Main skill instructions (deploy this)
-└── references/
-    ├── templates.md                      # Document template: structure, formatting, translations
-    ├── EU_COMMON.md                      # Pan-EU GDPR requirements (Art. 13/14 checklist, legal bases)
-    ├── DE.md                             # Germany-specific requirements (BDSG, TDDDG, DSK guidance)
-    ├── FR.md                             # France-specific requirements (CNIL recommendations, LIL, LCEN)
-    ├── OTHER_EU.md                       # AT, IT, ES, NL, BE, IE, UK GDPR specifics
-    └── NOTICE_TYPES.md                   # Type profiles: section maps, data categories, intake questions
+├── conformance.json                      # Portfolio-standard conformance declaration (tier: structural)
+├── sources.lock.json                     # Per-file/per-section source verification dates
+├── references/
+│   ├── templates.md                      # Document template: structure, formatting, translations
+│   ├── EU_COMMON.md                      # Pan-EU GDPR requirements (Art. 13/14 checklist, legal bases)
+│   ├── DE.md                             # Germany-specific requirements (BDSG, TDDDG, DSK guidance)
+│   ├── FR.md                             # France-specific requirements (CNIL recommendations, LIL, LCEN)
+│   ├── OTHER_EU.md                       # AT, IT, ES, NL, BE, IE, UK GDPR specifics
+│   ├── NOTICE_TYPES.md                   # Type profiles: section maps, data categories, intake questions
+│   └── notice-sidecar-schema.json        # Native machine-readable sidecar schema
+├── validator/                            # Structural validator (schema conformance + consistency rules)
+│   ├── validate.py                       # CLI: uv run validator/validate.py <sidecar.json>
+│   └── notice_validator/                 # Rule engine + core-artefact adapter
+└── tests/                                # pytest suite (CLI-level)
 ```
 
 ## Deployment

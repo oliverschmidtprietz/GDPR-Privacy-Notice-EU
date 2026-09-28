@@ -1,0 +1,122 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/oliverschmidtprietz/claude-skills/skills/privacy-notice-eu/references/notice-sidecar-schema.json",
+  "title": "privacy-notice-eu native sidecar 1.0",
+  "description": "Machine-readable summary of a single drafted privacy notice, lifted from the delivery-summary Assumptions/Contested-flags block the skill already produces in prose (SKILL.md 'Confidence and what gets handed back'). Structural tier: this schema plus the validator's completeness/consistency rules is the whole of this skill's portfolio-standard adoption — there is no findings-based legal rule engine.",
+  "type": "object",
+  "additionalProperties": true,
+  "required": ["sidecar_schema_version", "generated_at", "notice", "confidence", "children_data"],
+  "properties": {
+    "sidecar_schema_version": {"enum": ["1.0"], "default": "1.0"},
+    "generated_at": {"type": "string", "format": "date-time"},
+    "notice": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["notice_type", "jurisdictions"],
+      "properties": {
+        "notice_type": {
+          "enum": ["website_app", "applicant", "employee", "business_partner", "b2c_customer", "combined"],
+          "description": "The five notice types SKILL.md Step 1 offers, plus 'combined'."
+        },
+        "controller_name": {"type": "string", "description": "The controller this notice is drafted for. Used to derive the core-artefact subject.id/label."},
+        "jurisdictions": {
+          "type": "array",
+          "items": {"type": "string", "pattern": "^[A-Z]{2}$"},
+          "minItems": 1,
+          "uniqueItems": true,
+          "description": "ISO-3166-1 alpha-2 codes of the target markets, matching the reference file(s) loaded per SKILL.md Step 1 (DE, FR, AT, IT, ES, NL, BE, IE, UK)."
+        },
+        "localizes_users": {
+          "type": "boolean",
+          "description": "Whether the service can reliably localise which market a given user is in. Drives which children's-age-threshold rule applies (EU_COMMON.md 'Multi-jurisdiction rule')."
+        },
+        "art13_14_compliant": {
+          "type": "boolean",
+          "description": "The notice's own claim that Art. 13/14 mandatory disclosures (EU_COMMON.md checklist) are all present or explicitly not applicable."
+        }
+      }
+    },
+    "confidence": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["contested"],
+      "properties": {
+        "settled_count": {
+          "type": "integer", "minimum": 0,
+          "description": "Count of non-trivial legal positions tagged Settled (SKILL.md 'Confidence and what gets handed back')."
+        },
+        "assumed": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["id", "description"],
+            "properties": {
+              "id": {"type": "string"},
+              "description": {"type": "string"}
+            }
+          },
+          "description": "Positions rendered but resting on an unverified intake answer or unconfirmed default — the delivery summary's Assumptions block."
+        },
+        "contested": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["id", "description", "confirm_with_counsel_flag_emitted"],
+            "properties": {
+              "id": {"type": "string"},
+              "description": {"type": "string"},
+              "confirm_with_counsel_flag_emitted": {
+                "type": "boolean",
+                "description": "Whether a visible [TO CONFIRM WITH COUNSEL: ...] flag was actually rendered in the .docx for this item (SKILL.md: 'do NOT pick an authoritative-sounding answer ... Hand it back; do not bury it in fluent prose')."
+              }
+            }
+          },
+          "description": "Genuinely unsettled or out-of-scope positions — the delivery summary's Contested/Open-items block. Every entry here is a gap in the core-artefact projection."
+        }
+      }
+    },
+    "children_data": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["applicable"],
+      "properties": {
+        "applicable": {"type": "boolean", "description": "Whether the notice addresses children's data at all (EU_COMMON.md 'Children's Data' step 1/2)."},
+        "effective_age_applied": {
+          "type": ["integer", "null"],
+          "minimum": 13, "maximum": 16,
+          "description": "The single age threshold actually applied notice-wide, used only when localizes_users is false (EU_COMMON.md 'Multi-jurisdiction rule' fallback)."
+        },
+        "jurisdiction_thresholds_used": {
+          "type": "object",
+          "patternProperties": {"^[A-Z]{2}$": {"type": "integer", "minimum": 13, "maximum": 16}},
+          "additionalProperties": false,
+          "description": "Per-market age threshold actually applied, used when localizes_users is true."
+        }
+      }
+    },
+    "dpia": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "indicators_flagged": {
+          "type": "integer", "minimum": 0, "maximum": 9,
+          "description": "Count of WP248 rev.01 criteria flagged in SKILL.md Group G, for this run."
+        },
+        "routed_to_dpia_sentinel": {
+          "type": "boolean",
+          "description": "Whether the user was told to run dpia-sentinel per SKILL.md:230 (advertised handoff)."
+        }
+      }
+    },
+    "validation": {
+      "type": "object",
+      "description": "Optional, embedded by the skill for human readability. --emit-core-artefact ignores this block and rebuilds from the live validation result, never from here.",
+      "properties": {
+        "status": {"type": "string"},
+        "findings": {"type": "array"}
+      }
+    }
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "sidecar_schema_version": "1.0",
+  "generated_at": "2026-09-24T09:05:00Z",
+  "notice": {
+    "notice_type": "b2c_customer",
+    "controller_name": "Pan-EU Shop SE",
+    "jurisdictions": ["DE", "FR"],
+    "localizes_users": true,
+    "art13_14_compliant": true
+  },
+  "confidence": {
+    "settled_count": 18,
+    "assumed": [],
+    "contested": [
+      {"id": "contested-1", "description": "Whether the loyalty programme's profiling triggers Art. 22 is genuinely unsettled on these facts.", "confirm_with_counsel_flag_emitted": true}
+    ]
+  },
+  "children_data": {
+    "applicable": true,
+    "jurisdiction_thresholds_used": {"DE": 16, "FR": 15}
+  },
+  "dpia": {
+    "indicators_flagged": 1,
+    "routed_to_dpia_sentinel": false
+  }
+}

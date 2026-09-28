@@ -1,0 +1,20 @@
+{
+  "sidecar_schema_version": "1.0",
+  "generated_at": "2026-09-24T09:00:00Z",
+  "notice": {
+    "notice_type": "combined",
+    "controller_name": "Pan-EU Shop SE",
+    "jurisdictions": ["DE", "FR"],
+    "localizes_users": false,
+    "art13_14_compliant": true
+  },
+  "confidence": {
+    "settled_count": 15,
+    "assumed": [],
+    "contested": []
+  },
+  "children_data": {
+    "applicable": true,
+    "effective_age_applied": 15
+  }
+}

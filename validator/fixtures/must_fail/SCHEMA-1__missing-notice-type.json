@@ -1,0 +1,18 @@
+{
+  "sidecar_schema_version": "1.0",
+  "generated_at": "2026-09-24T09:00:00Z",
+  "notice": {
+    "controller_name": "Musterfirma GmbH",
+    "jurisdictions": ["DE"],
+    "localizes_users": true,
+    "art13_14_compliant": true
+  },
+  "confidence": {
+    "settled_count": 12,
+    "assumed": [],
+    "contested": []
+  },
+  "children_data": {
+    "applicable": false
+  }
+}

@@ -1,0 +1,114 @@
+{
+  "schema_version": "1.0",
+  "generated_at": "2026-09-24",
+  "files": {
+    "references/EU_COMMON.md": {
+      "source_type": "primary-law",
+      "jurisdiction": "EU",
+      "url": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32016R0679",
+      "last_verified": "2026-09-15",
+      "confidence": "high",
+      "owner": "oliverschmidtprietz",
+      "notes": "Pan-EU Art. 13/14 checklist, legal bases, and the multi-jurisdiction children's-age rule. Re-verified 2026-09-15 against Art. 8 GDPR when Finding 7 (v1.6 CHANGELOG) corrected the age-threshold rule from lowest-applicable to highest-applicable-as-fallback."
+    },
+    "references/DE.md": {
+      "source_type": "ai-drafted",
+      "jurisdiction": "DE",
+      "url": null,
+      "last_verified": "2026-09-15",
+      "confidence": "high",
+      "owner": "oliverschmidtprietz",
+      "notes": "DSGVO + BDSG + TDDDG overlay. Re-verified 2026-09-15 (v1.6 Finding 14a): corrected the false '§ 2 Nr. 17 TDDDG' citation for Germany's Art. 8 consent age; audited the remaining TDDDG pinpoints (§ 25, § 176 TKG) in the same pass."
+    },
+    "references/FR.md": {
+      "source_type": "ai-drafted",
+      "jurisdiction": "FR",
+      "url": null,
+      "last_verified": "2026-08-21",
+      "confidence": "high",
+      "owner": "oliverschmidtprietz",
+      "notes": "RGPD + LIL + LCEN overlay. Last substantively re-verified 2026-08-21 (v1.5 CF-04: corrected a duplicated Art. 2224 Code civil retention citation). Not touched again in v1.6 — no v1.6 receipt, so this stays at the v1.5 date rather than borrowing v1.6's."
+    },
+    "references/OTHER_EU.md#ES": {
+      "source_type": "ai-drafted",
+      "jurisdiction": "ES",
+      "url": null,
+      "last_verified": "2026-09-15",
+      "confidence": "high",
+      "owner": "oliverschmidtprietz",
+      "notes": "Spain (LOPDGDD) section only. Re-verified 2026-09-15 (v1.6 Finding 14b): corrected swapped Art. 12/89 citations to Art. 88/85 LOPDGDD; the Art. 7 (age 14) pinpoint was audited in the same pass and left unchanged."
+    },
+    "references/OTHER_EU.md#AT": {
+      "source_type": "ai-drafted",
+      "jurisdiction": "AT",
+      "url": null,
+      "last_verified": "2026-08-21",
+      "confidence": "medium",
+      "owner": "oliverschmidtprietz",
+      "notes": "Austria (DSG) section. No v1.6 finding touched this section — do not borrow the 2026-09-15 date from the ES fix in the same physical file. Falls back to the last portfolio-audit pass, v1.5 (2026-08-21), honestly: not independently re-verified since."
+    },
+    "references/OTHER_EU.md#IT": {
+      "source_type": "ai-drafted",
+      "jurisdiction": "IT",
+      "url": null,
+      "last_verified": "2026-08-21",
+      "confidence": "medium",
+      "owner": "oliverschmidtprietz",
+      "notes": "Italy (D.lgs. 196/2003) section. No v1.6 finding; falls back to v1.5 (2026-08-21) — not independently re-verified since."
+    },
+    "references/OTHER_EU.md#NL": {
+      "source_type": "ai-drafted",
+      "jurisdiction": "NL",
+      "url": null,
+      "last_verified": "2026-08-21",
+      "confidence": "medium",
+      "owner": "oliverschmidtprietz",
+      "notes": "Netherlands section. No v1.6 finding; falls back to v1.5 (2026-08-21) — not independently re-verified since."
+    },
+    "references/OTHER_EU.md#BE": {
+      "source_type": "ai-drafted",
+      "jurisdiction": "BE",
+      "url": null,
+      "last_verified": "2026-08-21",
+      "confidence": "medium",
+      "owner": "oliverschmidtprietz",
+      "notes": "Belgium section. No v1.6 finding; falls back to v1.5 (2026-08-21) — not independently re-verified since."
+    },
+    "references/OTHER_EU.md#IE": {
+      "source_type": "ai-drafted",
+      "jurisdiction": "IE",
+      "url": null,
+      "last_verified": "2026-08-21",
+      "confidence": "medium",
+      "owner": "oliverschmidtprietz",
+      "notes": "Ireland (Data Protection Act 2018) section. No v1.6 finding; falls back to v1.5 (2026-08-21) — not independently re-verified since."
+    },
+    "references/OTHER_EU.md#UK": {
+      "source_type": "ai-drafted",
+      "jurisdiction": "UK",
+      "url": null,
+      "last_verified": "2026-08-21",
+      "confidence": "medium",
+      "owner": "oliverschmidtprietz",
+      "notes": "UK GDPR / DPA 2018 section. No v1.6 finding; falls back to v1.5 (2026-08-21) — not independently re-verified since."
+    },
+    "references/NOTICE_TYPES.md": {
+      "source_type": "template",
+      "jurisdiction": "EU",
+      "url": null,
+      "last_verified": "2026-03-09",
+      "confidence": "medium",
+      "owner": "oliverschmidtprietz",
+      "notes": "Notice-type section maps, data profiles, and intake questions — structural drafting content, not itself a legal citation. Unchanged since the initial portfolio commit; no re-verification event to date."
+    },
+    "references/templates.md": {
+      "source_type": "template",
+      "jurisdiction": "EU",
+      "url": null,
+      "last_verified": "2026-03-09",
+      "confidence": "medium",
+      "owner": "oliverschmidtprietz",
+      "notes": "Document structure/formatting/translation template — structural drafting content, not itself a legal citation. Unchanged since the initial portfolio commit; no re-verification event to date."
+    }
+  }
+}

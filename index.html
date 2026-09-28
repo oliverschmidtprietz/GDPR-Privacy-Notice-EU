@@ -811,8 +811,8 @@ body {
 
     <section class="hero">
         <div class="badges">
-            <div class="badge badge--live">LIVE · v1.6 STABLE</div>
-            <div class="badge">BUILD 2026.09.15</div>
+            <div class="badge badge--live">LIVE · v1.7 STABLE</div>
+            <div class="badge">BUILD 2026.09.24</div>
             <div class="badge badge--color">ART. 13 · 14</div>
             <div class="badge">AGPL-3.0 · 4 EVAL CASES · 40 ASSERTIONS</div>
         </div>
@@ -1023,10 +1023,31 @@ body {
 │   ├── FR.md
 │   ├── NOTICE_TYPES.md
 │   ├── OTHER_EU.md
+│   ├── notice-sidecar-schema.json
 │   └── templates.md
+├── tests
+│   ├── test_emit_core_artefact.py
+│   ├── test_emit_core_artefact_malformed.py
+│   └── test_schema_selfvalid.py
+├── validator
+│   ├── fixtures
+│   │   ├── must_fail
+│   │   └── must_pass
+│   ├── notice_validator
+│   │   ├── rules
+│   │   ├── __init__.py
+│   │   ├── core_artefact.py
+│   │   ├── findings.py
+│   │   ├── registry.py
+│   │   ├── runner.py
+│   │   ├── test_core_artefact.py
+│   │   └── test_runner.py
+│   └── validate.py
 ├── CHANGELOG.md  <span class="comment"># Version history</span>
 ├── README.md  <span class="comment"># Deployment guide</span>
-└── SKILL.md  <span class="comment"># Main skill instructions</span></pre>
+├── SKILL.md  <span class="comment"># Main skill instructions</span>
+├── conformance.json
+└── sources.lock.json</pre>
         </div>
     </div>
 
@@ -1248,13 +1269,20 @@ body {
 <h2>File Structure</h2>
 <pre><code>privacy-notice-eu/
 ├── SKILL.md                              # Main skill instructions (deploy this)
-└── references/
-    ├── templates.md                      # Document template: structure, formatting, translations
-    ├── EU_COMMON.md                      # Pan-EU GDPR requirements (Art. 13/14 checklist, legal bases)
-    ├── DE.md                             # Germany-specific requirements (BDSG, TDDDG, DSK guidance)
-    ├── FR.md                             # France-specific requirements (CNIL recommendations, LIL, LCEN)
-    ├── OTHER_EU.md                       # AT, IT, ES, NL, BE, IE, UK GDPR specifics
-    └── NOTICE_TYPES.md                   # Type profiles: section maps, data categories, intake questions
+├── conformance.json                      # Portfolio-standard conformance declaration (tier: structural)
+├── sources.lock.json                     # Per-file/per-section source verification dates
+├── references/
+│   ├── templates.md                      # Document template: structure, formatting, translations
+│   ├── EU_COMMON.md                      # Pan-EU GDPR requirements (Art. 13/14 checklist, legal bases)
+│   ├── DE.md                             # Germany-specific requirements (BDSG, TDDDG, DSK guidance)
+│   ├── FR.md                             # France-specific requirements (CNIL recommendations, LIL, LCEN)
+│   ├── OTHER_EU.md                       # AT, IT, ES, NL, BE, IE, UK GDPR specifics
+│   ├── NOTICE_TYPES.md                   # Type profiles: section maps, data categories, intake questions
+│   └── notice-sidecar-schema.json        # Native machine-readable sidecar schema
+├── validator/                            # Structural validator (schema conformance + consistency rules)
+│   ├── validate.py                       # CLI: uv run validator/validate.py &lt;sidecar.json&gt;
+│   └── notice_validator/                 # Rule engine + core-artefact adapter
+└── tests/                                # pytest suite (CLI-level)
 </code></pre>
 <h2>Deployment</h2>
 <h3>Claude.ai (User Skills)</h3>
@@ -1401,7 +1429,7 @@ and OpenAI for an AI chatbot feature."</p>
     </section>
 
     <footer class="page-footer">
-        <span class="footer-text">onezero.legal · /SKILLS/PRIVACY.NOTICE · v1.6</span>
+        <span class="footer-text">onezero.legal · /SKILLS/PRIVACY.NOTICE · v1.7</span>
         <nav class="footer-links">
             <a href="https://onezero.legal">Portfolio</a>
             <a href="#features">Capabilities</a>

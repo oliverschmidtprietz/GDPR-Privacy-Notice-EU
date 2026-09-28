@@ -1,0 +1,25 @@
+{
+  "sidecar_schema_version": "1.0",
+  "generated_at": "2026-09-24T09:00:00Z",
+  "notice": {
+    "notice_type": "website_app",
+    "controller_name": "Musterfirma GmbH",
+    "jurisdictions": ["DE"],
+    "localizes_users": true,
+    "art13_14_compliant": true
+  },
+  "confidence": {
+    "settled_count": 12,
+    "assumed": [
+      {"id": "assume-1", "description": "Marketing runs on consent (Art. 6(1)(a)) per intake answer, not independently verified."}
+    ],
+    "contested": []
+  },
+  "children_data": {
+    "applicable": false
+  },
+  "dpia": {
+    "indicators_flagged": 0,
+    "routed_to_dpia_sentinel": false
+  }
+}

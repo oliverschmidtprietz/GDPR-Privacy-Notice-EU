@@ -1,0 +1,21 @@
+{
+  "sidecar_schema_version": "1.0",
+  "generated_at": "2026-09-24T09:00:00Z",
+  "notice": {
+    "notice_type": "website_app",
+    "controller_name": "Musterfirma GmbH",
+    "jurisdictions": ["DE"],
+    "localizes_users": true,
+    "art13_14_compliant": true
+  },
+  "confidence": {
+    "settled_count": 10,
+    "assumed": [],
+    "contested": [
+      {"id": "contested-1", "description": "Whether the retention period for support tickets is legally defensible is genuinely unsettled.", "confirm_with_counsel_flag_emitted": false}
+    ]
+  },
+  "children_data": {
+    "applicable": false
+  }
+}

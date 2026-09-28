@@ -6,6 +6,32 @@ Format: `## [vX.Y] — YYYY-MM-DD`
 
 ---
 
+## [v1.7] — 2026-09-24
+
+Portfolio-standard Level 1 (structural-tier) adoption — no change to notice
+structure, templates, or jurisdiction overlays.
+
+- **Native sidecar schema** (`references/notice-sidecar-schema.json`): lifts the
+  delivery summary's existing Settled/Assumed/Contested block and children's-data
+  fields into a machine-readable shape for the first time.
+- **Structural validator** (`validator/validate.py`, `notice_validator/`): schema
+  conformance, an empty-registry fail-closed guard, a consequential-invalid-input rule
+  (`CONSIST-1` — an `art13_14_compliant: true` claim may never coexist with a contested
+  item that has no `[TO CONFIRM WITH COUNSEL]` flag emitted), a children's-age
+  threshold-consistency rule (`AGE-1` — regression guard against the exact pre-v1.6
+  lowest-threshold bug), and `sources.lock.json` coverage/freshness (`SRC-1`). Emits the
+  portfolio findings-report 2.0 envelope and, via `--emit-core-artefact`, the portfolio
+  core artefact (`skill-artefact-1.1`).
+- **`sources.lock.json`**: honest per-file (and, for `OTHER_EU.md`, per-jurisdiction-section)
+  `last_verified` dates — only `EU_COMMON.md`, `DE.md`, and the `OTHER_EU.md` Spain section
+  carry the 2026-09-15 date the v1.6 findings actually re-verified; the other `OTHER_EU.md`
+  sections and `FR.md` stay at the v1.5 date (2026-08-21); `NOTICE_TYPES.md`/`templates.md`
+  (structural, non-legal content) stay at the initial-portfolio date (2026-03-09).
+- **`conformance.json`**: declares tier `structural` against standard v1.4.
+- Test suite: 41 pytest tests across schema self-validity, the rule engine,
+  the core-artefact adapter, and CLI-level `--emit-core-artefact` behaviour (incl. a
+  must_fail fixture reproducing the v1.6 Finding 7 regression).
+
 ## [v1.6] — 2026-09-15
 
 Adversarial-review correction pass (source: `docs/projects/gdpr-skills-marathon/ADVERSARIAL-REVIEW-2026-09-08.md`, findings 7 and 14). Legal-accuracy fixes only; no change to notice structure, templates or jurisdiction overlays.

@@ -5,7 +5,7 @@ description: |
 metadata:
   author: Oliver Schmidt-Prietz
   license: AGPL-3.0
-  version: 1.6
+  version: 1.7
 ---
 
 # Pan-EU GDPR Privacy Notice Generator
@@ -403,6 +403,25 @@ Present the following checklist to the user to guide their internal review and p
 - Company undergoes a merger, acquisition, or restructuring
 - A data breach occurs that reveals undisclosed processing
 - At minimum: annual review
+
+## Machine-readable output
+
+Alongside the .docx, write a native sidecar JSON file (shape:
+`references/notice-sidecar-schema.json`) summarising the notice: `notice`
+(type, controller, jurisdictions), `confidence` (settled count, `assumed[]`,
+`contested[]` — lift these directly from the delivery summary's Assumptions
+and Contested/Open-items blocks in Step 5), and `children_data`. Then run:
+
+```bash
+uv run skills/privacy-notice-eu/validator/validate.py <sidecar.json>
+```
+
+This checks schema conformance, that a compliant claim never coexists with an
+unflagged contested item, and the multi-jurisdiction children's-age rule.
+Add `--emit-core-artefact <path>` to also emit the portfolio core artefact
+(`docs/standards/schemas/skill-artefact-1.1.schema.json`) for handoff to
+sibling skills. Exit code 1 means the run is blocked — fix the reported
+findings before delivering the notice as compliant.
 
 ## Cross-References
 
