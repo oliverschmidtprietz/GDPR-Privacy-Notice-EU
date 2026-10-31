@@ -11,6 +11,7 @@ import jsonschema
 
 from notice_validator.findings import Finding
 from notice_validator.runner import validate, Context, Result, to_findings_json
+from notice_validator._schema_paths import find_schema
 
 HERE = Path(__file__).resolve()
 VALIDATOR = HERE.parents[1]                    # .../validator
@@ -54,8 +55,7 @@ def test_runner0_early_return_reports_the_real_mode_and_validated_at(monkeypatch
 # --- Portfolio findings-report 2.0 ---------------------------------
 
 _REPORT_SCHEMA = json.loads(
-    (Path(__file__).resolve().parents[4] / "docs" / "standards" / "schemas"
-     / "findings-report-2.0.schema.json").read_text(encoding="utf-8")
+    find_schema("findings-report-2.0.schema.json").read_text(encoding="utf-8")
 )
 
 

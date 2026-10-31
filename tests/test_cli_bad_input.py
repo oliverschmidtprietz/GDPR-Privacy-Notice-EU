@@ -13,11 +13,12 @@ from pathlib import Path
 import jsonschema
 import pytest
 
-REPO_ROOT = Path(__file__).resolve().parents[3]
-VALIDATE = REPO_ROOT / "skills" / "privacy-notice-eu" / "validator" / "validate.py"
+from conftest import find_schema
+
+SKILL_ROOT = Path(__file__).resolve().parents[1]
+VALIDATE = SKILL_ROOT / "validator" / "validate.py"
 ARTEFACT_SCHEMA = json.loads(
-    (REPO_ROOT / "docs" / "standards" / "schemas"
-     / "skill-artefact-1.1.schema.json").read_text(encoding="utf-8"))
+    find_schema("skill-artefact-1.1.schema.json").read_text(encoding="utf-8"))
 
 
 def run_cli(*argv):
@@ -97,7 +98,7 @@ def test_bad_input_with_emit_core_artefact_still_writes_a_blocked_schema_valid_a
 
 
 def test_valid_sidecar_is_unaffected_by_the_loader_change(tmp_path):
-    clean = (REPO_ROOT / "skills" / "privacy-notice-eu" / "validator" / "fixtures"
+    clean = (SKILL_ROOT / "validator" / "fixtures"
              / "must_pass" / "minimal-clean.json")
     proc = run_cli(clean, "--format", "json")
     assert proc.returncode == 0, proc.stderr

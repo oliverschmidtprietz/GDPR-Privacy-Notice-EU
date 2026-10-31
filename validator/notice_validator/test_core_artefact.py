@@ -5,10 +5,10 @@ from pathlib import Path
 import jsonschema
 
 from notice_validator.core_artefact import to_core_artefact, blocked_artefact
+from notice_validator._schema_paths import find_schema
 
 _ARTEFACT_SCHEMA = json.loads(
-    (Path(__file__).resolve().parents[4] / "docs" / "standards" / "schemas"
-     / "skill-artefact-1.1.schema.json").read_text(encoding="utf-8")
+    find_schema("skill-artefact-1.1.schema.json").read_text(encoding="utf-8")
 )
 
 

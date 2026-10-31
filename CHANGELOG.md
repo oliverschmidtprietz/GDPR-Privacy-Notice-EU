@@ -6,6 +6,22 @@ Format: `## [vX.Y] — YYYY-MM-DD`
 
 ---
 
+## [v1.9] — 2026-10-31
+
+Bundled tests made portable to the standalone public copy (`scripts/stage-public-copy.sh`
++ `scripts/check-public-portability.sh`). No change to notice structure or templates.
+
+- **`tests/conftest.py` (new) and `validator/notice_validator/_schema_paths.py` (new)
+  both expose `find_schema()`**, which locates a shared portfolio schema
+  (`docs/standards/schemas/*.schema.json`) by walking up from the file's own
+  location — works identically whether the schemas sit at the monorepo root or at the
+  root of a flat public copy (the staging script now copies them there).
+  `tests/test_cli_bad_input.py`, `tests/test_emit_core_artefact.py`,
+  `tests/test_emit_core_artefact_malformed.py`,
+  `validator/notice_validator/test_core_artefact.py`, and
+  `validator/notice_validator/test_runner.py` use it instead of a hard-coded
+  `REPO_ROOT`, which only resolved correctly inside the monorepo.
+
 ## [v1.8] — 2026-10-02
 
 Break-it test 2026-10-02 fix wave: validator holes, a CLI crash, and a legal-content

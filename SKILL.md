@@ -5,7 +5,7 @@ description: |
 metadata:
   author: Oliver Schmidt-Prietz
   license: AGPL-3.0
-  version: 1.8
+  version: 1.9
 ---
 
 # Pan-EU GDPR Privacy Notice Generator
