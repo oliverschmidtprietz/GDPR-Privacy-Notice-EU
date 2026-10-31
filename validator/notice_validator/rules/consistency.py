@@ -23,43 +23,54 @@ _AGE_THRESHOLDS = {
 
 
 @rule(id="CONSIST-1", severity="rejection", category="consistency",
-      description="A notice claiming art13_14_compliant=true must not carry a contested "
-                  "item with no [TO CONFIRM WITH COUNSEL] flag emitted.",
+      description="A contested item must carry its [TO CONFIRM WITH COUNSEL] flag "
+                  "before delivery. This fires regardless of notice.art13_14_compliant "
+                  "— omitting that claim is not a way to bypass the check (break-it "
+                  "test 2026-10-02, probe05: the claim was absent, not false, and the "
+                  "unflagged item still shipped).",
       spec_anchor=_CONSIST_SPEC)
 def compliant_claim_with_unflagged_contested_item(sidecar, ctx):
     out = []
     notice = sidecar.get("notice") if isinstance(sidecar, dict) else None
     confidence = sidecar.get("confidence") if isinstance(sidecar, dict) else None
-    if not isinstance(notice, dict) or not isinstance(confidence, dict):
-        return out
-    if notice.get("art13_14_compliant") is not True:
+    if not isinstance(confidence, dict):
         return out
     contested = confidence.get("contested")
     if not isinstance(contested, list):
         return out
+    claims_compliant = isinstance(notice, dict) and notice.get("art13_14_compliant") is True
     for item in contested:
         if not isinstance(item, dict):
             continue  # SCHEMA-1 already reports the type violation
         if item.get("confirm_with_counsel_flag_emitted") is False:
+            claim_note = (
+                " notice.art13_14_compliant is true, which makes shipping it unflagged "
+                "worse"
+                if claims_compliant else
+                " notice.art13_14_compliant is not claimed true here, but leaving that "
+                "field unset is not a way to bypass this check"
+            )
             out.append(Finding(
                 rule_id="CONSIST-1", category="consistency", severity="rejection",
                 entry_type="contested_item", entry_id=item.get("id"),
-                message=(f"notice.art13_14_compliant is true but contested item "
-                          f"{item.get('id')!r} has no [TO CONFIRM WITH COUNSEL] flag "
-                          "emitted — SKILL.md requires a contested position never be "
-                          "smoothed over silently."),
+                message=(f"Contested item {item.get('id')!r} has no [TO CONFIRM WITH "
+                          f"COUNSEL] flag emitted.{claim_note} — SKILL.md requires a "
+                          "contested position never be smoothed over silently."),
                 spec_anchor=_CONSIST_SPEC,
-                fix_hint="Either render the [TO CONFIRM WITH COUNSEL: ...] flag for this "
-                         "item (confirm_with_counsel_flag_emitted=true), or drop the "
-                         "art13_14_compliant claim.",
+                fix_hint="Render the [TO CONFIRM WITH COUNSEL: ...] flag for this item "
+                         "(confirm_with_counsel_flag_emitted=true) before delivering "
+                         "the notice as compliant.",
             ))
     return out
 
 
 @rule(id="AGE-1", severity="rejection", category="consistency",
-      description="Multi-jurisdiction notices must apply each Member State's own Art. 8 "
+      description="Every covered jurisdiction (single or multi) must apply its own Art. 8 "
                   "threshold, or the highest applicable threshold when the service cannot "
-                  "reliably localise users — never the lowest.",
+                  "reliably localise users — never the lowest. A notice that never sets "
+                  "localizes_users is treated the same as one that cannot localise "
+                  "(conservative default), and a jurisdiction outside this skill's "
+                  "age-threshold table is reported, not silently passed.",
       spec_anchor=_AGE_SPEC)
 def children_age_threshold_consistency(sidecar, ctx):
     out = []
@@ -72,29 +83,60 @@ def children_age_threshold_consistency(sidecar, ctx):
     jurisdictions = notice.get("jurisdictions")
     if not isinstance(jurisdictions, list):
         return out
+
     known = {j: _AGE_THRESHOLDS[j] for j in jurisdictions
              if isinstance(j, str) and j in _AGE_THRESHOLDS}
+
+    # Hole (c): a jurisdiction outside the playbook must not silently pass when
+    # children's data is in play — the age threshold for it is simply unverified.
+    uncovered = sorted({j for j in jurisdictions
+                         if isinstance(j, str) and j not in _AGE_THRESHOLDS})
+    for j in uncovered:
+        out.append(Finding(
+            rule_id="AGE-1", category="consistency", severity="warning",
+            field="notice.jurisdictions", entry_id=j,
+            message=(f"{j!r} is outside this skill's Art. 8 age-threshold playbook "
+                      f"(references/EU_COMMON.md only tabulates {sorted(_AGE_THRESHOLDS)}) "
+                      "and children_data.applicable is true for this notice — the age "
+                      f"threshold actually applied for {j!r} is unverified against that "
+                      "jurisdiction's own Art. 8 implementing law, not checked by this "
+                      "rule."),
+            spec_anchor=_AGE_SPEC,
+            fix_hint=(f"Confirm {j!r}'s Art. 8 threshold with local counsel / the national "
+                      "DPA before relying on any value applied for it, or route this "
+                      "jurisdiction to counsel per the Step 1 STOP rule for jurisdictions "
+                      "outside the loaded playbooks."),
+        ))
     if not known:
         return out
 
     localizes = notice.get("localizes_users")
-    if localizes is False and len(jurisdictions) >= 2:
+    # Holes (a)/(b): a single covered jurisdiction, and a notice that never sets
+    # localizes_users at all, must still be checked — only an EXPLICIT True switches
+    # to the per-market branch below. Treating "unset" as "cannot reliably localise"
+    # is the conservative reading: it forces the HIGHEST threshold rather than letting
+    # an unanswered question silently default to a lower one.
+    if localizes is not True:
         expected = max(known.values())
         applied = children.get("effective_age_applied")
         if isinstance(applied, int) and applied < expected:
             out.append(Finding(
                 rule_id="AGE-1", category="consistency", severity="rejection",
                 field="children_data.effective_age_applied",
-                message=(f"children_data.effective_age_applied={applied} but this service "
-                          f"cannot localise users across {jurisdictions} — the correct "
-                          f"fallback is the HIGHEST applicable Art. 8 threshold "
-                          f"({expected}), never the lowest. This is the v1.6 Finding 7 "
-                          "regression this rule guards against."),
+                message=(f"children_data.effective_age_applied={applied} but this notice "
+                          f"does not reliably localise users across {jurisdictions} "
+                          f"(notice.localizes_users={localizes!r}) — the correct fallback "
+                          f"is the HIGHEST applicable Art. 8 threshold ({expected}), never "
+                          "a lower one. This is the v1.6 Finding 7 regression this rule "
+                          "guards against, and (break-it test 2026-10-02) now also applies "
+                          "to a single covered jurisdiction and to an unset "
+                          "localizes_users, not only to localizes_users=false with 2+ "
+                          "jurisdictions."),
                 spec_anchor=_AGE_SPEC,
                 fix_hint=f"Set children_data.effective_age_applied to {expected} (or set "
                          "notice.localizes_users=true and supply per-market thresholds).",
             ))
-    elif localizes is True:
+    else:
         used = children.get("jurisdiction_thresholds_used")
         if isinstance(used, dict):
             for j, expected in sorted(known.items()):

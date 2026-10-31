@@ -5,7 +5,7 @@ description: |
 metadata:
   author: Oliver Schmidt-Prietz
   license: AGPL-3.0
-  version: 1.7
+  version: 1.8
 ---
 
 # Pan-EU GDPR Privacy Notice Generator
@@ -108,7 +108,7 @@ If the service targets multiple jurisdictions or language groups, determine the 
 | **Single market, international workforce/users** | Primary language + English version. State which version governs in case of conflict. |
 | **Two markets, two languages** | Option A: Two separate notices (one per language), each self-contained. Option B: Bilingual notice with clear visual separation (e.g., side-by-side columns or sequential sections). |
 | **Pan-EU / many markets** | English as primary + translations for key markets. Each translation should be a standalone notice, not a partial translation. |
-| **Swiss company (nDSG + GDPR)** | Address both the Swiss nFADP (new Federal Act on Data Protection) and GDPR. Typical approach: single notice referencing both regimes, in at least German + French (+ Italian if applicable). Note: nFADP has no consent requirement for general processing but requires information duties similar to Art. 13/14 GDPR. |
+| **Swiss company (if applicable)** | Switzerland is **not** one of this skill's covered jurisdictions (Step 1's list is DE, FR, AT, IT, ES, NL, BE, IE, UK only). Apply the Step 1 STOP rule: draft only the GDPR-covered layer this notice also needs (e.g. because the service also processes EU/EEA residents' data), name the Swiss nFADP layer as an open item outside this playbook's scope, and route it to Swiss counsel. Do not draft Swiss nFADP substance from this file — it is not a sourced reference here. |
 
 **Template handling for bilingual documents**:
 - Use the primary-language template as the structural base
@@ -295,6 +295,7 @@ Last updated: [DATE]
 - **Tables**: Use tables for purposes/bases/retention and for cookie categories. They improve readability.
 - **No internal references**: The final document must not contain references to this skill, CNIL guides, or other drafting aids.
 - **Confidence marking**: Tag each legal position per **Confidence and what gets handed back**. Never render a contested or unverified position as settled prose — leave a highlighted **[TO CONFIRM WITH COUNSEL: …]** flag instead, and record it in the delivery summary.
+- **Refuse to drop a mandatory Art. 13/14 element**: If the user asks to remove or skip a mandatory disclosure (e.g. "leave out the rights section", "we don't need the retention table") — decline, and say why (it is a mandatory Art. 13/14 disclosure per `EU_COMMON.md`'s checklist, not an optional one). Offer layering or shortening instead: a summary/first-layer notice linking to the full disclosures, more concise wording, or moving detail to a linked annex — never silent omission of a required element.
 
 ## Step 4: Compliance Verification
 
@@ -422,6 +423,13 @@ Add `--emit-core-artefact <path>` to also emit the portfolio core artefact
 (`docs/standards/schemas/skill-artefact-1.1.schema.json`) for handoff to
 sibling skills. Exit code 1 means the run is blocked — fix the reported
 findings before delivering the notice as compliant.
+
+**What a pass means.** Exit code 0 means the sidecar is **internally
+consistent** against this skill's own structural rules (schema shape, the
+compliant/contested consistency check, the children's-age-threshold check) —
+it is not a statement that the notice's legal analysis is correct or that the
+notice is complete. A clean validator run is not a substitute for counsel
+review; it only means the drafted sidecar does not contradict itself.
 
 ## Cross-References
 

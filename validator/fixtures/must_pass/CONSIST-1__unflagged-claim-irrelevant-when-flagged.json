@@ -1,0 +1,20 @@
+{
+  "sidecar_schema_version": "1.0",
+  "generated_at": "2026-10-02T09:00:00Z",
+  "notice": {
+    "notice_type": "website_app",
+    "controller_name": "Properly Flagged GmbH",
+    "jurisdictions": ["DE"],
+    "localizes_users": true
+  },
+  "confidence": {
+    "settled_count": 5,
+    "assumed": [],
+    "contested": [
+      {"id": "c1", "description": "Whether legitimate interest for profiling survives a balancing test is unresolved.", "confirm_with_counsel_flag_emitted": true}
+    ]
+  },
+  "children_data": {
+    "applicable": false
+  }
+}

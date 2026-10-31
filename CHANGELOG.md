@@ -6,6 +6,55 @@ Format: `## [vX.Y] — YYYY-MM-DD`
 
 ---
 
+## [v1.8] — 2026-10-02
+
+Break-it test 2026-10-02 fix wave: validator holes, a CLI crash, and a legal-content
+correction. No change to notice structure or templates.
+
+- **`AGE-1` had three silent-pass holes**, all closed:
+  (a) a **single covered jurisdiction** was never checked at all (the rule only fired
+  when `localizes_users is False` *and* 2+ jurisdictions) — a single-market notice with
+  `children_data.applicable` and the wrong `effective_age_applied` now fails;
+  (b) an **unset `localizes_users`** silently skipped the check — now treated the same,
+  conservative way as `localizes_users=false` (the highest applicable threshold is
+  required unless `localizes_users` is explicitly `true`);
+  (c) a **jurisdiction outside the age-threshold table** (e.g. PL) silently passed when
+  `children_data.applicable` was true — now emits a visible `AGE-1` warning naming the
+  jurisdiction and pointing to the Step 1 STOP rule, instead of saying nothing.
+- **`CONSIST-1` omission bypass**: the rule only fired when `notice.art13_14_compliant`
+  was explicitly `true`, so simply never setting that field let an unflagged contested
+  item (`confirm_with_counsel_flag_emitted: false`) ship silently. The rule now fires on
+  any unflagged contested item regardless of whether the compliance claim is present —
+  omitting the claim is not a way to bypass the check.
+- **CLI crash on bad input (ledger X1)**: `validate.py` previously let a missing file,
+  an unreadable file, invalid UTF-8, invalid JSON, or a non-object top-level JSON value
+  raise an uncaught exception (a raw traceback, plus a `TypeError` specifically when
+  combined with `--emit-core-artefact`). It now fails closed: a new `_load_sidecar`
+  step catches all of these, reports a single `INPUT-0` rejection finding through the
+  normal findings-report/exit-code path (exit 1, status `failed`), and
+  `--emit-core-artefact` still writes a schema-valid `blocked` artefact instead of
+  crashing.
+- **Legal content — UK row (`references/OTHER_EU.md`)**: replaced the dead "Post-DPDI
+  Bill" reference (that bill was abandoned) with the **Data (Use and Access) Act 2025**
+  (c. 18, Royal Assent 19 June 2025) and its "recognised legitimate interests" and
+  automated-decision-making reforms, both commenced 5 February 2026 (SI 2026/82) —
+  verified against legislation.gov.uk and independent commencement summaries;
+  `sources.lock.json`'s UK entry updated accordingly (`last_verified: 2026-10-02`).
+- **Swiss STOP-rule contradiction (`SKILL.md`)**: the Multi-Language Decision Tree
+  carried substantive, unsourced Swiss nFADP content even though Switzerland is not one
+  of this skill's covered jurisdictions (Step 1's STOP rule). The row now routes Swiss
+  processing to the STOP rule like any other out-of-playbook jurisdiction, instead of
+  contradicting it.
+- **Explicit refusal instruction**: a user request to drop a mandatory Art. 13/14
+  element (e.g. "skip the rights section") is now explicitly declined with the reason,
+  offering layering or shortening instead of silent omission.
+- **Disclaimer**: "Machine-readable output" now states plainly that a validator pass
+  (exit 0) means the sidecar is internally consistent — not that the legal analysis is
+  correct or the notice is complete.
+- 12 new regression tests (from break-it probes 02/03/04/05/07/08/12) across
+  `notice_validator/rules/test_consistency.py` and a new `tests/test_cli_bad_input.py`;
+  full suite 41 → 56 tests, all green.
+
 ## [v1.7] — 2026-09-24
 
 Portfolio-standard Level 1 (structural-tier) adoption — no change to notice

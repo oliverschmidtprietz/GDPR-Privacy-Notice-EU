@@ -86,11 +86,11 @@
     "references/OTHER_EU.md#UK": {
       "source_type": "ai-drafted",
       "jurisdiction": "UK",
-      "url": null,
-      "last_verified": "2026-08-21",
-      "confidence": "medium",
+      "url": "https://www.legislation.gov.uk/ukpga/2025/18",
+      "last_verified": "2026-10-02",
+      "confidence": "high",
       "owner": "oliverschmidtprietz",
-      "notes": "UK GDPR / DPA 2018 section. No v1.6 finding; falls back to v1.5 (2026-08-21) — not independently re-verified since."
+      "notes": "UK GDPR / DPA 2018 section. Re-verified 2026-10-02 (break-it test 2026-10-02): replaced the dead DPDI Bill reference with the Data (Use and Access) Act 2025 (c. 18, Royal Assent 19 June 2025 — legislation.gov.uk/ukpga/2025/18) and its recognised-legitimate-interests and automated-decision-making reforms, both commenced 5 February 2026 via the Data (Use and Access) Act 2025 (Commencement No. 6) Regulations 2026 (SI 2026/82, legislation.gov.uk/uksi/2026/82) — cross-checked against DLA Piper and Clifford Chance commencement summaries. A 'check commencement' caveat is kept in the reference for any DUAA provision not named there."
     },
     "references/NOTICE_TYPES.md": {
       "source_type": "template",

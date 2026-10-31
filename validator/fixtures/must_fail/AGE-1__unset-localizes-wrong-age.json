@@ -1,0 +1,19 @@
+{
+  "sidecar_schema_version": "1.0",
+  "generated_at": "2026-10-02T09:00:00Z",
+  "notice": {
+    "notice_type": "b2c_customer",
+    "controller_name": "No Localisation Flag Ltd",
+    "jurisdictions": ["DE", "FR"],
+    "art13_14_compliant": true
+  },
+  "confidence": {
+    "settled_count": 10,
+    "assumed": [],
+    "contested": []
+  },
+  "children_data": {
+    "applicable": true,
+    "effective_age_applied": 13
+  }
+}
